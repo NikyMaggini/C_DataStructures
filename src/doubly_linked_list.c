@@ -1,11 +1,11 @@
 #include "..\include\doubly_linked_list.h"
 
-d_list_node_t *d_list_get_tail(d_list_node_t **head) //è un metodo tipo un iteratore, prende la coda
+d_list_node_t *d_list_get_tail(d_list_node_t **head)
 {
-    d_list_node_t *current_node = *head; //leggo il valore che cè nella test (*head)
+    d_list_node_t *current_node = *head;
     d_list_node_t *last_node = NULL;
 
-    while (current_node) //vedo se la lista è definita, potrebbe essere vuota
+    while (current_node) 
     {
         last_node = current_node;
         current_node = current_node->next;
@@ -29,7 +29,7 @@ d_list_node_t *d_list_append(d_list_node_t **head, d_list_node_t *item)
     return item;
 }
 
-d_list_node_t *d_list_pop(d_list_node_t **head) // pop = take the head of the list and remove it
+d_list_node_t *d_list_pop(d_list_node_t **head)
 {
     d_list_node_t *current_head = *head;
     if (!current_head)
@@ -41,7 +41,7 @@ d_list_node_t *d_list_pop(d_list_node_t **head) // pop = take the head of the li
     return current_head;
 }
 
-int d_item_contains(d_list_node_t **head, d_list_node_t *item) // return 0 if contains item
+int d_item_contains(d_list_node_t **head, d_list_node_t *item)
 {
     d_list_node_t *node = *head;
 
@@ -116,7 +116,7 @@ void d_instert_after_item(d_list_node_t **head, d_list_node_t *after_node, d_lis
     current_node->prev = item;
 }
 
-d_string_item_t *d_string_item_new(const char *string) // prova
+d_string_item_t *d_string_item_new(const char *string)
 {
     d_string_item_t *item = malloc(sizeof(d_string_item_t));
     if (!item)

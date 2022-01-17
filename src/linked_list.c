@@ -1,10 +1,10 @@
 #include "..\include\linked_list.h"
 
-list_node_t *list_get_tail(list_node_t **head) //è un metodo tipo un iteratore, prende la coda
+list_node_t *list_get_tail(list_node_t **head)
 {
-    list_node_t *current_node = *head; //leggo il valore che cè nella test (*head)
+    list_node_t *current_node = *head; 
     list_node_t *last_node = NULL;
-    while (current_node) //vedo se la lista è definita, potrebbe essere vuota
+    while (current_node)
     {
         last_node = current_node;
         current_node = current_node->next;
@@ -17,7 +17,7 @@ list_node_t *list_append(list_node_t **head, list_node_t *item)
     list_node_t *tail = list_get_tail(head);
     if (!tail)
     {
-        *head = item; //qui praticamente dereferenzia **head. dereferenziandolo (cosi *head) ottengo il suo contenuto
+        *head = item; 
     }
     else
     {
@@ -27,7 +27,7 @@ list_node_t *list_append(list_node_t **head, list_node_t *item)
     return item;
 }
 
-list_node_t *list_pop(list_node_t **head) // pop = take the head of the list and remove it
+list_node_t *list_pop(list_node_t **head)
 {
     list_node_t *current_head = *head;
     if (!current_head)
@@ -39,7 +39,7 @@ list_node_t *list_pop(list_node_t **head) // pop = take the head of the list and
     return current_head;
 }
 
-void list_remove(list_node_t **head, list_node_t *item) //head da dove inizio ad iterare
+void list_remove(list_node_t **head, list_node_t *item)
 {
     if(item == NULL) return;
 
@@ -48,7 +48,7 @@ void list_remove(list_node_t **head, list_node_t *item) //head da dove inizio ad
 
     if(current_node == item)
     {
-        list_pop(head);                                 //if item is the same as the head, I’ll take the head
+        list_pop(head);                              
         return;
     }    
   
