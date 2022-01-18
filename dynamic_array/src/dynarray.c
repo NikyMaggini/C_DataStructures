@@ -1,8 +1,5 @@
 #include "..\include\dynarray.h"
 
-// DA USARE! Possiamo printare Counter, se non è 0 ci siamo scordati un Free_tracked
-// E' un modo per tenere traccia delle allocazzioni che facciamo
-// Consigliato da Roberto
 static size_t counter = 0;
 void *malloc_tracked(size_t amount)
 {
@@ -36,7 +33,7 @@ void dynarray_clear(dynarray_t *array)
 {
     array->number_of_elements = 0;
     array->capacity = 0;
-    // free(array->data); // libero la memoria
+    // free(array->data); 
     free_tracked(array->data);
     array->data = NULL;
     // free(array->tmp_data);
@@ -66,7 +63,7 @@ int dynarray_append(dynarray_t *array, void *value)
 
     if (new_size > array->capacity)
     {
-        uint8_t *new_ptr = realloc(array->data, new_size * array->size_of_element); // serve per ridimensionare un aria di memoria, piu grande o piu piccola
+        uint8_t *new_ptr = realloc(array->data, new_size * array->size_of_element); 
         if (!new_ptr)
         {
             return -1;
@@ -75,13 +72,13 @@ int dynarray_append(dynarray_t *array, void *value)
         array->capacity += 1;
     }
 
-    size_t offset = array->number_of_elements * array->size_of_element; // è dove vogliamo andare a scrivere il nuovo dato
-    memcpy(array->data + offset, value, array->size_of_element);        // memcpy() = copio la memoria
+    size_t offset = array->number_of_elements * array->size_of_element; 
+    memcpy(array->data + offset, value, array->size_of_element);        
     array->number_of_elements = new_size;
     return 0;
 }
 
-int dynarray_get(const dynarray_t *array, const size_t index, void *value) // per prendere un elemento in un determinato indice
+int dynarray_get(const dynarray_t *array, const size_t index, void *value) 
 {
     if (index >= array->number_of_elements)
     {
@@ -104,7 +101,7 @@ int dynarray_remove(dynarray_t *array, const size_t index)
 
     if (index < array->number_of_elements - 1)
     {
-        memcpy(array->tmp_data, array->data + offset, array->size_of_element); // make copy if the original data
+        memcpy(array->tmp_data, array->data + offset, array->size_of_element); 
         memmove(array->data + offset, array->data + offset + array->size_of_element, (array->number_of_elements - index) * array->size_of_element);
     }
 
@@ -125,42 +122,3 @@ int dynarray_remove(dynarray_t *array, const size_t index)
     array->number_of_elements = new_size;
     return 0;
 }
-
-// int Test_Dynarray()
-// {
-//     dynarray_t array;
-//     dynarray_init_type(&array, int);
-
-//     int a = 100;
-//     int b = 200;
-//     int c = 300;
-//     dynarray_append(&array, &a);
-
-//     dynarray_append(&array, &b);
-//     dynarray_append(&array, &c);
-//     dynarray_append(&array, &c);
-//     dynarray_append(&array, &c);
-//     dynarray_append(&array, &c);
-//     dynarray_append(&array, &c);
-//     dynarray_append(&array, &c);
-
-//     // printf("number of elements = %llu\n", dynarray_len(&array));
-//     // printf("Array capacity = %llu\n", array.capacity);
-//     // printf("Size_of_element: %llu\n", array.size_of_element);
-//     // printf("Number_of_element: %llu\n", array.number_of_elements);
-
-
-//     for (size_t i = 0; i < dynarray_len(&array); i++)
-//     {
-//         int value;
-//         if (!dynarray_get(&array, i, &value))
-//         {
-//             printf("[%llu] %d\n", i, value);
-//         }
-//     }
-
-//     dynarray_clear(&array);
-//     printf("\nDynarray_malloc_tracked_counter: %llu\n", counter);
-
-//     return 0;
-// }

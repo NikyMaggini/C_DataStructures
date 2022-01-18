@@ -11,21 +11,21 @@
 #define dynarray_init_type(array, type) dynarray_init(array, sizeof(type))
 
 
-typedef struct // typedef crea un alias (dynarray_t), che useremo poi per chiamare questa struttura
+typedef struct 
 {
-    size_t number_of_elements; // quantità (size_t = rappresenta il numero piu grande rappresentabile dall'architettura)
-    size_t size_of_element;     // dimensione (del singolo elemento)
+    size_t number_of_elements;
+    size_t size_of_element;
     size_t capacity;
-    uint8_t *data;                // indirizzo    - usiamo uint8_t perche almeno possiamo aggiungere/sottrarre 1,2,3,ecc perche con void non puoi
-    uint8_t *tmp_data;          // usato per salavare quello che ci serve, un taqquino (usato malloc)
+    uint8_t *data;  
+    uint8_t *tmp_data; 
 } dynarray_t;
 
 
 int dynarray_init(dynarray_t *array, const size_t size_of_element);
 void dynarray_clear(dynarray_t *array);
-int dynarray_append(dynarray_t *array, void *value); // append = aggiungo elemente all'array
+int dynarray_append(dynarray_t *array, void *value);
 size_t dynarray_len(const dynarray_t *array);
 size_t dynarray_capacity(const dynarray_t *array);
-int dynarray_get(const dynarray_t *array, const size_t index, void *value); // per prendere un elemento in un determinato indice
+int dynarray_get(const dynarray_t *array, const size_t index, void *value); 
 int dynarray_remove(dynarray_t *array, const size_t index);
 int Test_Dynarray();
