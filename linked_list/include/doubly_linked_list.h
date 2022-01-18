@@ -3,8 +3,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*
+ * Define for: doubly_list_node_t **
+*/
 #define DOUBLE_LINKED_PP d_list_node_t **
+/*
+ * Define for: doubly_list_node_t *
+*/
 #define DOUBLE_LINKED_P d_list_node_t *
+/*
+ * Define for: string_item_t *
+*/
 #define D_STRING_ITEM_P d_string_item_t *
 
 typedef struct d_list_node
