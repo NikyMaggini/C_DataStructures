@@ -37,5 +37,8 @@ Test with Data Structures.
 ## Apis
 | Api | Description |
 | ------------- | ------------- |
-| set_table_t *set_table_new(...) | ...... |
-| set_table_t *set_insert | ...... |
+| size_t djb33x_hash(...) | Hashing algorithm |
+| set_table_t *set_table_new(...) | Create a new set_table |
+| set_table_t *set_insert | Insert a Set |
+| set_node_t *set_search(...) | Set search |
+| set_node_t *set_remove(...) | Set remove |
