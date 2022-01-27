@@ -3,18 +3,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*
- * Define for: doubly_list_node_t **
-*/
 #define DOUBLE_LINKED_PP d_list_node_t **
-/*
- * Define for: doubly_list_node_t *
-*/
 #define DOUBLE_LINKED_P d_list_node_t *
-/*
- * Define for: string_item_t *
-*/
 #define D_STRING_ITEM_P d_string_item_t *
+
+#define DOUBLY_LIST_APPEND(head, item) d_list_append((DOUBLE_LINKED_PP)head, (DOUBLE_LINKED_P)item);
+#define DOUBLY_LIST_REMOVE(head, item) d_list_remove((DOUBLE_LINKED_PP)head, (DOUBLE_LINKED_P)item);
+#define DOUBLY_LIST_POP(head) d_list_pop((DOUBLE_LINKED_PP)head);
+#define DOUBLY_LIST_INSERT_BEFORE(head, item_to_append, item) \
+        d_instert_before_item((DOUBLE_LINKED_PP)head, (DOUBLE_LINKED_P)item_to_append, (DOUBLE_LINKED_P)item);
+#define DOUBLY_LIST_INSERT_AFTER(head, item_to_append, item) \
+        d_instert_after_item((DOUBLE_LINKED_PP)head, (DOUBLE_LINKED_P)item_to_append, (DOUBLE_LINKED_P)item);
 
 typedef struct d_list_node
 {

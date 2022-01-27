@@ -11,15 +11,16 @@ void __Test_Linked_List()
     STRING_ITEM_P test003 = string_item_new("Test003");
     STRING_ITEM_P test004 = string_item_new("Test004");
 
-    list_append((LIST_NODE_PP)&my_linked_list, (LIST_NODE_P)test001);
-    list_append((LIST_NODE_PP)&my_linked_list, (LIST_NODE_P)test002);
-    list_append((LIST_NODE_PP)&my_linked_list, (LIST_NODE_P)test003);
-    list_append((LIST_NODE_PP)&my_linked_list, (LIST_NODE_P)test004);
-    // list_pop(&my_linked_list);
+    LIST_APPEND(&my_linked_list, test001);
+    LIST_APPEND(&my_linked_list, test002);
+    LIST_APPEND(&my_linked_list, test003);
+    LIST_APPEND(&my_linked_list, test004);
+
+    LIST_POP(&my_linked_list);
+
+    LIST_REMOVE(&my_linked_list, test002);
+
     STRING_ITEM_P string_item = my_linked_list;
-
-    list_remove((LIST_NODE_PP)&string_item, (LIST_NODE_P)test002);
-
     while (string_item)
     {
         printf("%s\n", string_item->string);
@@ -39,30 +40,32 @@ void __Test_Doubly_Linked_List()
     D_STRING_ITEM_P d_test005 = d_string_item_new("d_test005");
     D_STRING_ITEM_P d_test006 = d_string_item_new("d_test006");
 
-    d_list_append((DOUBLE_LINKED_PP)&doubly_linked_list, (DOUBLE_LINKED_P)d_test001);
-    d_list_append((DOUBLE_LINKED_PP)&doubly_linked_list, (DOUBLE_LINKED_P)d_test002);
-    d_list_append((DOUBLE_LINKED_PP)&doubly_linked_list, (DOUBLE_LINKED_P)d_test003);
-    d_list_append((DOUBLE_LINKED_PP)&doubly_linked_list, (DOUBLE_LINKED_P)d_test004);
-    d_list_append((DOUBLE_LINKED_PP)&doubly_linked_list, (DOUBLE_LINKED_P)d_test005);
+    DOUBLY_LIST_APPEND(&doubly_linked_list, d_test001);
+    DOUBLY_LIST_APPEND(&doubly_linked_list, d_test002);
+    DOUBLY_LIST_APPEND(&doubly_linked_list, d_test003);
+    DOUBLY_LIST_APPEND(&doubly_linked_list, d_test004);
+    DOUBLY_LIST_APPEND(&doubly_linked_list, d_test005);
 
-    // d_list_pop((DOUBLE_LINKED_PP)&doubly_linked_list);
-    // d_list_remove((DOUBLE_LINKED_PP)&doubly_linked_list, (DOUBLE_LINKED_P)d_test001);
-    d_instert_before_item((DOUBLE_LINKED_PP)&doubly_linked_list, (DOUBLE_LINKED_P)d_test004, (DOUBLE_LINKED_P)d_test006);
-    // d_instert_after_item((DOUBLE_LINKED_PP)&doubly_linked_list, (DOUBLE_LINKED_P)d_test004, (DOUBLE_LINKED_P)d_test006);
+    DOUBLY_LIST_POP(&doubly_linked_list);
+    
+    DOUBLY_LIST_REMOVE(&doubly_linked_list, d_test003);
+    
+    // DOUBLY_LIST_INSERT_BEFORE(&doubly_linked_list, d_test004, d_test006);
+
+    DOUBLY_LIST_INSERT_AFTER(&doubly_linked_list, d_test004, d_test006);
 
     D_STRING_ITEM_P doubly_string_item = doubly_linked_list;
     while (doubly_string_item)
     {
         printf("%s\n", doubly_string_item->string);
-        doubly_string_item = (D_STRING_ITEM_P )doubly_string_item->node.next;
+        doubly_string_item = (D_STRING_ITEM_P)doubly_string_item->node.next;
     }
 }
-
 
 int main()
 {
     __Test_Linked_List();
-    __Test_Doubly_Linked_List();    
+    __Test_Doubly_Linked_List();
 
     return 0;
 }

@@ -1,12 +1,12 @@
 
 #include "..\include\doubly_linked_list.h"
 
-d_list_node_t *d_list_get_tail(d_list_node_t **head) 
+d_list_node_t *d_list_get_tail(d_list_node_t **head)
 {
-    d_list_node_t *current_node = *head; 
+    d_list_node_t *current_node = *head;
     d_list_node_t *last_node = NULL;
 
-    while (current_node) 
+    while (current_node)
     {
         last_node = current_node;
         current_node = current_node->next;
@@ -77,6 +77,8 @@ void d_list_remove(d_list_node_t **head, d_list_node_t *item)
 
     prev_node->next = item->next;
     next_node->prev = item->prev;
+    item->prev = NULL;
+    item->next = NULL;
 }
 
 void d_instert_before_item(d_list_node_t **head, d_list_node_t *before_node, d_list_node_t *item) // TO REVIEW (only works by adding a value not into the list)
@@ -116,7 +118,7 @@ void d_instert_after_item(d_list_node_t **head, d_list_node_t *after_node, d_lis
     current_node->prev = item;
 }
 
-d_string_item_t *d_string_item_new(const char *string) 
+d_string_item_t *d_string_item_new(const char *string)
 {
     d_string_item_t *item = malloc(sizeof(d_string_item_t));
     if (!item)
@@ -126,4 +128,3 @@ d_string_item_t *d_string_item_new(const char *string)
     item->string = string;
     return item;
 }
-

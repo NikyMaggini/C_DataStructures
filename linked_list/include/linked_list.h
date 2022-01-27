@@ -2,18 +2,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stddef.h> // required for NULL
-/*
- * Define for: list_node_t **
-*/
+
 #define LIST_NODE_PP list_node_t **
-/*
- * Define for: list_node_t *
-*/
 #define LIST_NODE_P list_node_t *
-/*
- * Define for: string_item_t *
-*/
 #define STRING_ITEM_P string_item_t *
+
+#define LIST_APPEND(head, item) list_append((LIST_NODE_PP)head, (LIST_NODE_P)item);
+#define LIST_REMOVE(head, item) list_remove((LIST_NODE_PP)head, (LIST_NODE_P)item);
+#define LIST_POP(head) list_pop((LIST_NODE_PP)head);
 
 typedef struct list_node
 {
